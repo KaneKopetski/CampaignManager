@@ -26,11 +26,14 @@ public class AuthService {
     @Autowired
     private JwtProvider jwtProvider;
 
-    public void signup(RegisterRequest registerRequest) {
+    public void register(RegisterRequest registerRequest) {
         Users users = new Users();
         users.setUsername(registerRequest.getUsername());
-        users.setEmail(registerRequest.getEmail());
         users.setPassword(encodePassword(registerRequest.getPassword()));
+        users.setEmail(registerRequest.getEmail());
+        users.setAboutMe(registerRequest.getAboutMe());
+        users.setFirstName(registerRequest.getFirstName());
+        users.setLastName(registerRequest.getLastName());
 
         userRepository.save(users);
     }

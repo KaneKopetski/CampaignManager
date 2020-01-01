@@ -24,7 +24,7 @@ public class JwtProvider {
             InputStream resourceAsStream = getClass().getResourceAsStream("/springblog.jks");
             keyStore.load(resourceAsStream, "secret".toCharArray());
         } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
-            throw new CampaignManagerException("Exception occured while loading keystore");
+            throw new CampaignManagerException("Exception occurred while loading keystore");
         }
 
     }
@@ -41,26 +41,26 @@ public class JwtProvider {
         try {
             return (PrivateKey) keyStore.getKey("springblog", "secret".toCharArray());
         } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableKeyException e) {
-            throw new CampaignManagerException("Exception occured while retrieving public key from keystore");
+            throw new CampaignManagerException("Exception occurred while retrieving public key from keystore");
         }
     }
 
     public boolean validateToken(String jwt) {
-        Jwts.parser().setSigningKey(getPublickey()).parseClaimsJws(jwt);
+        Jwts.parser().setSigningKey(getPublicKey()).parseClaimsJws(jwt);
         return true;
     }
 
-    private PublicKey getPublickey() {
+    private PublicKey getPublicKey() {
         try {
             return keyStore.getCertificate("springblog").getPublicKey();
         } catch (KeyStoreException e) {
-            throw new CampaignManagerException("Exception occured while retrieving public key from keystore");
+            throw new CampaignManagerException("Exception occurred while retrieving public key from keystore");
         }
     }
 
     public String getUsernameFromJWT(String token) {
         Claims claims = Jwts.parser()
-                .setSigningKey(getPublickey())
+                .setSigningKey(getPublicKey())
                 .parseClaimsJws(token)
                 .getBody();
 

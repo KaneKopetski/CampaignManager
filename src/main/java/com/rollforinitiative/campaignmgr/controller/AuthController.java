@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/auth")
 public class AuthController {
 
@@ -20,11 +19,11 @@ public class AuthController {
     private AuthService authService;
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
-    @PostMapping("/signup")
-    public ResponseEntity signup(@RequestBody RegisterRequest registerRequest) {
+    @PostMapping("/register")
+    public ResponseEntity register(@RequestBody RegisterRequest registerRequest) {
         String username = registerRequest.getUsername();
-        LOGGER.info("Signup post request received. Username: {}", username);
-        authService.signup(registerRequest);
+        LOGGER.info("Sign-up post request received. Username: {}", username);
+        authService.register(registerRequest);
         return new ResponseEntity(HttpStatus.OK);
     }
 

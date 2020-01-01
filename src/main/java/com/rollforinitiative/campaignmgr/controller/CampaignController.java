@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController("/api/campaigns")
+@RestController
+@RequestMapping("/api/campaigns")
 public class CampaignController {
 
     @Autowired
@@ -58,8 +59,20 @@ public class CampaignController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<CampaignRequest> updateCampaign(@RequestBody CampaignRequest campaignRequest) throws CampaignNotFoundException {
-        campaignService.updateCampaign(campaignRequest);
+    public ResponseEntity updateCampaign(@RequestBody CampaignRequest campaignRequest) throws CampaignNotFoundException {
+        String username = campaignRequest.getOwner().getUsername();
+        String campaignName = campaignRequest.getCampaignName();
+        String description = campaignRequest.getDescription();
+        Double edition = campaignRequest.getEdition();
+        LOGGER.info("Campaign update request received. Username: {}", username);
+        LOGGER.info("Campaign update request received. Name: {}", campaignName);
+        LOGGER.info("Campaign update request received. Description: {}", description);
+        LOGGER.info("Campaign update request received. Edition: {}", edition);
+        try {
+            campaignService.updateCampaign(campaignRequest);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
