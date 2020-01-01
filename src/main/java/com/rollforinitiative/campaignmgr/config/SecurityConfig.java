@@ -48,10 +48,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/configuration/**",
                         "/swagger-ui.html",
                         "/webjars/**",
-                        "/h2-console")
+                        "/h2-console",
+                        "/h2-console/**",
+                        "/h2-console/")
                 .permitAll().anyRequest().authenticated();
 
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.headers().frameOptions().disable();
     }
 
     @Autowired

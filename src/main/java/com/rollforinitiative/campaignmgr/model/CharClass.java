@@ -1,6 +1,8 @@
 package com.rollforinitiative.campaignmgr.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class CharClass {
@@ -11,10 +13,10 @@ public class CharClass {
     private String className;
     @Column
     private String hitDice;
-    @ManyToOne
-    private Character character;
     @OneToOne
     private Users creator;
+    @ManyToMany(mappedBy = "classes")
+    private Set<Character> characters = new HashSet<>();
 
     public Long getClassId() {
         return classId;
@@ -48,11 +50,11 @@ public class CharClass {
         this.hitDice = hitDice;
     }
 
-    public Character getCharacter() {
-        return character;
+    public Set<Character> getCharacters() {
+        return characters;
     }
 
-    public void setCharacter(Character character) {
-        this.character = character;
+    public void setCharacters(Set<Character> characters) {
+        this.characters = characters;
     }
 }

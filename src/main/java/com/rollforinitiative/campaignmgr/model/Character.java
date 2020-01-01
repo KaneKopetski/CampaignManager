@@ -1,6 +1,8 @@
 package com.rollforinitiative.campaignmgr.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Character {
@@ -39,6 +41,13 @@ public class Character {
     private Users owner;
     @OneToOne
     private CharRace race;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "character_classes",
+            joinColumns = { @JoinColumn(name = "characterId") },
+            inverseJoinColumns = { @JoinColumn(name = "charClassId") }
+    )
+    List<CharClass> classes = new ArrayList<>();
 
     public Long getCharacterId() {
         return characterId;
@@ -174,5 +183,13 @@ public class Character {
 
     public void setRace(CharRace race) {
         this.race = race;
+    }
+
+    public List<CharClass> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(List<CharClass> classes) {
+        this.classes = classes;
     }
 }
