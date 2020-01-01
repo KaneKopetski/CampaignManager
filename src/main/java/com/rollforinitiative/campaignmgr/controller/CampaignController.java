@@ -21,25 +21,6 @@ public class CampaignController {
     private CampaignService campaignService;
     private static final Logger LOGGER = LoggerFactory.getLogger(CampaignController.class);
 
-
-    @PostMapping("/create")
-    public ResponseEntity createPost(@RequestBody CampaignRequest campaignRequest) {
-        String username = campaignRequest.getOwner().getUsername();
-        String campaignName = campaignRequest.getCampaignName();
-        String description = campaignRequest.getDescription();
-        Double edition = campaignRequest.getEdition();
-        LOGGER.info("Campaign creation request received. Username: {}", username);
-        LOGGER.info("Campaign creation request received. Name: {}", campaignName);
-        LOGGER.info("Campaign creation request received. Description: {}", description);
-        LOGGER.info("Campaign creation request received. Edition: {}", edition);
-        try {
-            campaignService.createCampaign(campaignRequest);
-        } catch (Exception e) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity(HttpStatus.CREATED);
-    }
-
     @Valid
     @GetMapping("/get/all")
     public ResponseEntity<List<CampaignRequest>> getAllCampaigns() {
@@ -48,8 +29,13 @@ public class CampaignController {
     }
 
     @GetMapping("/get/{campaignId}")
-    public ResponseEntity<CampaignRequest> getCampaignById(@PathVariable @RequestBody Long campaignId) {
+    public ResponseEntity<CampaignRequest> getCampaignById(@PathVariable Long campaignId) {
         return new ResponseEntity<>(campaignService.getCampaignById(campaignId), HttpStatus.OK);
+    }
+
+    @GetMapping("/owner/{ownerId}")
+    public ResponseEntity getAllCampaignsByOwner(@PathVariable Long ownerId) {
+        return new ResponseEntity<>(campaignService.getAllCampaignsByOwner(ownerId), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{campaignId}")
@@ -76,4 +62,21 @@ public class CampaignController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("/create")
+    public ResponseEntity createPost(@RequestBody CampaignRequest campaignRequest) {
+        String username = campaignRequest.getOwner().getUsername();
+        String campaignName = campaignRequest.getCampaignName();
+        String description = campaignRequest.getDescription();
+        Double edition = campaignRequest.getEdition();
+        LOGGER.info("Campaign creation request received. Username: {}", username);
+        LOGGER.info("Campaign creation request received. Name: {}", campaignName);
+        LOGGER.info("Campaign creation request received. Description: {}", description);
+        LOGGER.info("Campaign creation request received. Edition: {}", edition);
+        try {
+            campaignService.createCampaign(campaignRequest);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
 }

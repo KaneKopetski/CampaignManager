@@ -5,6 +5,7 @@ import com.rollforinitiative.campaignmgr.model.Campaign;
 import com.rollforinitiative.campaignmgr.model.Users;
 import com.rollforinitiative.campaignmgr.repository.CampaignRepository;
 import com.rollforinitiative.campaignmgr.repository.UsersRepository;
+import com.rollforinitiative.campaignmgr.request.CampaignLessOwnerRequest;
 import com.rollforinitiative.campaignmgr.request.CampaignRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -33,6 +34,12 @@ public class CampaignService {
     }
 
     @Transactional
+    public List<CampaignLessOwnerRequest> getAllCampaignsByOwner(Long campaignId) {
+        List<Campaign> campaigns = campaignRepository.findByOwner_UsersId(campaignId);
+        return campaigns.stream().map(this::mapFromCampaignToRequestLessOwner).collect(toList());
+    }
+
+    @Transactional
     public Campaign createCampaign(CampaignRequest campaignRequest) {
         Campaign campaign = mapFromRequestToCampaign(campaignRequest);
         campaignRepository.save(campaign);
@@ -56,6 +63,15 @@ public class CampaignService {
         return campaignRequest;
     }
 
+    private CampaignLessOwnerRequest mapFromCampaignToRequestLessOwner(Campaign campaign) {
+        CampaignLessOwnerRequest campaignLessOwnerRequest = new CampaignLessOwnerRequest();
+        campaignLessOwnerRequest.setCampaignId(campaign.getCampaignId());
+        campaignLessOwnerRequest.setCampaignName(campaign.getCampaignName());
+        campaignLessOwnerRequest.setDescription(campaign.getDescription());
+        campaignLessOwnerRequest.setEdition(campaign.getEdition());
+        return campaignLessOwnerRequest;
+    }
+
     private Campaign mapFromRequestToCampaign(CampaignRequest campaignRequest) {
         Campaign campaign = new Campaign();
         campaign.setCampaignId(campaignRequest.getCampaignId());
@@ -72,17 +88,19 @@ public class CampaignService {
     }
 
     @Transactional
-    public void deleteCampaignById(Long campaignId) {
+    public Boolean deleteCampaignById(Long campaignId) {
         campaignRepository.deleteById(campaignId);
+        return true;
     }
 
     @Transactional
-    public void updateCampaign(CampaignRequest campaignRequest) {
+    public Campaign updateCampaign(CampaignRequest campaignRequest) {
         Campaign campaign = campaignRepository.getOne(campaignRequest.getCampaignId());
         campaign.setCampaignName(campaignRequest.getCampaignName());
         campaign.setDescription(campaignRequest.getDescription());
         campaign.setEdition(campaignRequest.getEdition());
         campaignRepository.save(campaign);
+        return campaign;
     }
 
 }
