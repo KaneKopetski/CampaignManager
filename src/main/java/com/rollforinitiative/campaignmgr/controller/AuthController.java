@@ -4,7 +4,6 @@ import com.rollforinitiative.campaignmgr.request.LoginRequest;
 import com.rollforinitiative.campaignmgr.request.RegisterRequest;
 import com.rollforinitiative.campaignmgr.service.AuthService;
 import com.rollforinitiative.campaignmgr.service.AuthenticationResponse;
-import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
