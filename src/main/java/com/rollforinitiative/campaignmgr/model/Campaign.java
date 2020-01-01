@@ -1,13 +1,7 @@
 package com.rollforinitiative.campaignmgr.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.List;
 
-@Getter
-@Setter
 @Entity
 public class Campaign {
     @Id
@@ -21,4 +15,44 @@ public class Campaign {
     private String description;
     @ManyToOne
     private Users owner;
+
+    public Long getCampaignId() {
+        return campaignId;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    public String getCampaignName() {
+        return campaignName;
+    }
+
+    public void setCampaignName(String campaignName) {
+        this.campaignName = campaignName;
+    }
+
+    public Double getEdition() {
+        return edition;
+    }
+
+    public void setEdition(Double edition) {
+        this.edition = edition;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Users getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Users owner) {
+        this.owner = owner;
+    }
 }

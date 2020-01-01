@@ -6,10 +6,53 @@ import javax.persistence.*;
 public class CharClass {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long classId;
     @Column
     private String className;
+    @Column
+    private Users creator;
+    @Column
+    private String hitDice;
     @ManyToOne
     private Character character;
 
+    public Long getClassId() {
+        return classId;
+    }
+
+    public void setClassId(Long classId) {
+        this.classId = classId;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public Users getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Users creator) {
+        this.creator = creator;
+    }
+
+    public String getHitDice() {
+        return hitDice;
+    }
+
+    public void setHitDice(String hitDice) {
+        this.hitDice = hitDice;
+    }
+
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
 }
