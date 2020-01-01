@@ -13,8 +13,6 @@ public class Character {
     private Integer age;
     @Column
     private String name;
-//    @Column
-//    private CharRace race;
     @Column
     private Integer charLevel;
     @Column
@@ -35,10 +33,12 @@ public class Character {
     private Integer armorClass;
     @Column
     private Integer speed;
-//    @ManyToOne
-//    private Party party;
-//    @ManyToOne
-//    private Users owner;
+    @ManyToOne
+    private Party party;
+    @ManyToOne
+    private Users owner;
+    @OneToOne
+    private CharRace race;
 
     public Long getCharacterId() {
         return characterId;
@@ -71,14 +71,6 @@ public class Character {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public CharRace getRace() {
-//        return race;
-//    }
-//
-//    public void setRace(CharRace race) {
-//        this.race = race;
-//    }
 
     public Integer getCharLevel() {
         return charLevel;
@@ -136,21 +128,21 @@ public class Character {
         this.charisma = charisma;
     }
 
-//    public Party getParty() {
-//        return party;
-//    }
-//
-//    public void setParty(Party party) {
-//        this.party = party;
-//    }
-//
-//    public Users getOwner() {
-//        return owner;
-//    }
-//
-//    public void setOwner(Users owner) {
-//        this.owner = owner;
-//    }
+    public Party getParty() {
+        return party;
+    }
+
+    public void setParty(Party party) {
+        this.party = party;
+    }
+
+    public Users getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Users owner) {
+        this.owner = owner;
+    }
 
     public Integer getAttack() {
         return attack;
@@ -166,5 +158,21 @@ public class Character {
 
     public void setArmorClass(Integer armorClass) {
         this.armorClass = armorClass;
+    }
+
+    public Integer getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(Integer speed) {
+        this.speed = speed;
+    }
+
+    public CharRace getRace() {
+        return race;
+    }
+
+    public void setRace(CharRace race) {
+        this.race = race;
     }
 }

@@ -9,12 +9,12 @@ public class CharClass {
     private Long classId;
     @Column
     private String className;
-//    @Column
-//    private Users creator;
     @Column
     private String hitDice;
-//    @ManyToOne
-//    private Character character;
+    @ManyToOne
+    private Character character;
+    @OneToOne
+    private Users creator;
 
     public Long getClassId() {
         return classId;
@@ -32,13 +32,13 @@ public class CharClass {
         this.className = className;
     }
 
-//    public Users getCreator() {
-//        return creator;
-//    }
-//
-//    public void setCreator(Users creator) {
-//        this.creator = creator;
-//    }
+    public Users getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Users creator) {
+        this.creator = creator;
+    }
 
     public String getHitDice() {
         return hitDice;
@@ -48,11 +48,11 @@ public class CharClass {
         this.hitDice = hitDice;
     }
 
-//    public Character getCharacter() {
-//        return character;
-//    }
-//
-//    public void setCharacter(Character character) {
-//        this.character = character;
-//    }
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
 }
