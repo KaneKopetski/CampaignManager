@@ -8,14 +8,15 @@ import com.rollforinitiative.campaignmgr.repository.UsersRepository;
 import com.rollforinitiative.campaignmgr.request.CampaignRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
+@Service
 public class CampaignService {
 
     @Autowired
