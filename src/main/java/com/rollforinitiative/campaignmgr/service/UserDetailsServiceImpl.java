@@ -14,12 +14,13 @@ import java.util.Collections;
 
 @Service
 public class UserDetailsServiceImpl implements org.springframework.security.core.userdetails.UserDetailsService {
+
     @Autowired
-    private UsersRepository userRepository;
+    private UsersRepository usersRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users users = userRepository.findByUsername(username).orElseThrow(()->
+        Users users = usersRepository.findByUsername(username).orElseThrow(()->
                 new UsernameNotFoundException("No users found " + username));
         return new org.springframework.security.core.userdetails.User(users.getUsername(),
                 users.getPassword(), true, true, true,true,

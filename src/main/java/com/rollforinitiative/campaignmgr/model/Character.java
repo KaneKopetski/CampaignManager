@@ -13,8 +13,8 @@ public class Character {
     private Integer age;
     @Column
     private String name;
-    @Column
-    private CharRace race;
+//    @Column
+//    private CharRace race;
     @Column
     private Integer charLevel;
     @Column
@@ -29,10 +29,16 @@ public class Character {
     private Integer intelligence;
     @Column
     private Integer charisma;
-    @ManyToOne
-    private Party party;
-    @ManyToOne
-    private Users owner;
+    @Column
+    private Integer attack;
+    @Column
+    private Integer armorClass;
+    @Column
+    private Integer speed;
+//    @ManyToOne
+//    private Party party;
+//    @ManyToOne
+//    private Users owner;
 
     public Long getCharacterId() {
         return characterId;
@@ -66,13 +72,13 @@ public class Character {
         this.name = name;
     }
 
-    public CharRace getRace() {
-        return race;
-    }
-
-    public void setRace(CharRace race) {
-        this.race = race;
-    }
+//    public CharRace getRace() {
+//        return race;
+//    }
+//
+//    public void setRace(CharRace race) {
+//        this.race = race;
+//    }
 
     public Integer getCharLevel() {
         return charLevel;
@@ -130,19 +136,35 @@ public class Character {
         this.charisma = charisma;
     }
 
-    public Party getParty() {
-        return party;
+//    public Party getParty() {
+//        return party;
+//    }
+//
+//    public void setParty(Party party) {
+//        this.party = party;
+//    }
+//
+//    public Users getOwner() {
+//        return owner;
+//    }
+//
+//    public void setOwner(Users owner) {
+//        this.owner = owner;
+//    }
+
+    public Integer getAttack() {
+        return attack;
     }
 
-    public void setParty(Party party) {
-        this.party = party;
+    public void setAttack(Integer attack) {
+        this.attack = attack;
     }
 
-    public Users getOwner() {
-        return owner;
+    public Integer getArmorClass() {
+        return armorClass;
     }
 
-    public void setOwner(Users owner) {
-        this.owner = owner;
+    public void setArmorClass(Integer armorClass) {
+        this.armorClass = armorClass;
     }
 }

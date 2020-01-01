@@ -9,8 +9,8 @@ public class CharRace {
     private Long raceId;
     @Column
     private String raceName;
-    @Column
-    private Users creator;
+//    @Column
+//    private Users creator;
     @Column
     private Integer startingStrength;
     @Column
@@ -40,13 +40,13 @@ public class CharRace {
         this.raceName = raceName;
     }
 
-    public Users getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Users creator) {
-        this.creator = creator;
-    }
+//    public Users getCreator() {
+//        return creator;
+//    }
+//
+//    public void setCreator(Users creator) {
+//        this.creator = creator;
+//    }
 
     public Integer getStartingStrength() {
         return startingStrength;

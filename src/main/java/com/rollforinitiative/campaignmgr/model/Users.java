@@ -19,10 +19,6 @@ public class Users {
     private String lastName;
     @Column
     private String aboutMe;
-    @ManyToOne
-    private Campaign campaign;
-    @ManyToOne
-    private Character character;
 
     public Long getUsersId() {
         return usersId;
@@ -80,19 +76,4 @@ public class Users {
         this.aboutMe = aboutMe;
     }
 
-    public Campaign getCampaign() {
-        return campaign;
-    }
-
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
-    }
-
-    public Character getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(Character character) {
-        this.character = character;
-    }
 }
