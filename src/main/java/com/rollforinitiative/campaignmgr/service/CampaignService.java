@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -80,9 +79,8 @@ public class CampaignService {
         campaign.setEdition(campaignRequest.getEdition());
 
         User loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("User not found."));
-        String ownerUsername = loggedInUser.getUsername();
-        Optional<Users> owner = usersRepository.findByUsername(ownerUsername);
-        campaign.setOwner(owner.get());
+        Users owner = usersRepository.findByUsername(loggedInUser.getUsername()).get();
+        campaign.setOwner(owner);
 
         return campaign;
     }

@@ -1,5 +1,6 @@
 package com.rollforinitiative.campaignmgr.controller;
 
+import com.rollforinitiative.campaignmgr.model.Users;
 import com.rollforinitiative.campaignmgr.request.LoginRequest;
 import com.rollforinitiative.campaignmgr.request.RegisterRequest;
 import com.rollforinitiative.campaignmgr.service.AuthService;
@@ -29,6 +30,9 @@ public class AuthController {
 
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+        String username = loginRequest.getUsername();
+        LOGGER.info("Login request received. Username: {}", username);
         return authService.login(loginRequest);
     }
+
 }

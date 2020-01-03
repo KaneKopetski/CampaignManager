@@ -46,11 +46,9 @@ public class CampaignController {
 
     @PutMapping("/update")
     public ResponseEntity updateCampaign(@RequestBody CampaignRequest campaignRequest) throws CampaignNotFoundException {
-        String username = campaignRequest.getOwner().getUsername();
         String campaignName = campaignRequest.getCampaignName();
         String description = campaignRequest.getDescription();
         Double edition = campaignRequest.getEdition();
-        LOGGER.info("Campaign update request received. Username: {}", username);
         LOGGER.info("Campaign update request received. Name: {}", campaignName);
         LOGGER.info("Campaign update request received. Description: {}", description);
         LOGGER.info("Campaign update request received. Edition: {}", edition);
@@ -64,11 +62,9 @@ public class CampaignController {
 
     @PostMapping("/create")
     public ResponseEntity createPost(@RequestBody CampaignRequest campaignRequest) {
-        String username = campaignRequest.getOwner().getUsername();
         String campaignName = campaignRequest.getCampaignName();
         String description = campaignRequest.getDescription();
         Double edition = campaignRequest.getEdition();
-        LOGGER.info("Campaign creation request received. Username: {}", username);
         LOGGER.info("Campaign creation request received. Name: {}", campaignName);
         LOGGER.info("Campaign creation request received. Description: {}", description);
         LOGGER.info("Campaign creation request received. Edition: {}", edition);

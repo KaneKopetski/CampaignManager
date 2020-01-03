@@ -1,6 +1,7 @@
 package com.rollforinitiative.campaignmgr.request;
 
 import com.rollforinitiative.campaignmgr.model.Users;
+import org.springframework.security.core.userdetails.User;
 
 public class CampaignRequest {
     private Long campaignId;

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 @Service
 public class UserDetailsServiceImpl implements org.springframework.security.core.userdetails.UserDetailsService {
@@ -30,5 +31,6 @@ public class UserDetailsServiceImpl implements org.springframework.security.core
     private Collection<? extends GrantedAuthority> getAuthorities(String role_user) {
         return Collections.singletonList(new SimpleGrantedAuthority(role_user));
     }
+
 }
 
