@@ -7,6 +7,7 @@ public class RegisterRequest {
     private String firstName;
     private String lastName;
     private String aboutMe;
+    private byte[] image;
 
     public String getUsername() {
         return username;
@@ -54,5 +55,13 @@ public class RegisterRequest {
 
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

@@ -1,6 +1,5 @@
 package com.rollforinitiative.campaignmgr.controller;
 
-import com.rollforinitiative.campaignmgr.model.Users;
 import com.rollforinitiative.campaignmgr.request.LoginRequest;
 import com.rollforinitiative.campaignmgr.request.RegisterRequest;
 import com.rollforinitiative.campaignmgr.service.AuthService;
@@ -21,7 +20,7 @@ public class AuthController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity register(@ModelAttribute RegisterRequest registerRequest) {
         String username = registerRequest.getUsername();
         LOGGER.info("Sign-up post request received. Username: {}", username);
         authService.register(registerRequest);

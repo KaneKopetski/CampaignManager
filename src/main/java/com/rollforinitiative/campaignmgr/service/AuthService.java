@@ -34,6 +34,7 @@ public class AuthService {
         users.setAboutMe(registerRequest.getAboutMe());
         users.setFirstName(registerRequest.getFirstName());
         users.setLastName(registerRequest.getLastName());
+        users.setImage(registerRequest.getImage());
 
         userRepository.save(users);
     }
@@ -55,4 +56,6 @@ public class AuthService {
                 getContext().getAuthentication().getPrincipal();
         return Optional.of(principal);
     }
+
+
 }
