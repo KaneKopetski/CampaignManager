@@ -1,5 +1,6 @@
 package com.rollforinitiative.campaignmgr.service;
 
+import com.rollforinitiative.campaignmgr.exception.FileStorageException;
 import com.rollforinitiative.campaignmgr.model.Users;
 import com.rollforinitiative.campaignmgr.repository.UsersRepository;
 import com.rollforinitiative.campaignmgr.request.LoginRequest;
@@ -12,6 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 import java.util.Optional;
 
 @Service
@@ -34,8 +37,11 @@ public class AuthService {
         users.setAboutMe(registerRequest.getAboutMe());
         users.setFirstName(registerRequest.getFirstName());
         users.setLastName(registerRequest.getLastName());
-        users.setImage(registerRequest.getImage());
-
+        try {
+            users.setImage(registerRequest.getImage().getBytes());
+        } catch (IOException e) {
+            throw new FileStorageException("Could not store file.");
+        }
         userRepository.save(users);
     }
 

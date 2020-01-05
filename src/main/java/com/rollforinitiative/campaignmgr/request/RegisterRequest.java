@@ -1,5 +1,7 @@
 package com.rollforinitiative.campaignmgr.request;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class RegisterRequest {
     private String username;
     private String password;
@@ -7,7 +9,7 @@ public class RegisterRequest {
     private String firstName;
     private String lastName;
     private String aboutMe;
-    private byte[] image;
+    private MultipartFile image;
 
     public String getUsername() {
         return username;
@@ -57,11 +59,11 @@ public class RegisterRequest {
         this.aboutMe = aboutMe;
     }
 
-    public byte[] getImage() {
+    public MultipartFile getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(MultipartFile image) {
         this.image = image;
     }
 }
