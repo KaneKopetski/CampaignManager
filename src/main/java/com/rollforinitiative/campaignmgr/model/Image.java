@@ -17,6 +17,10 @@ public class Image {
     @Lob
     private byte[] data;
 
+    public Image() {
+        
+    }
+
     public Image(String fileName, String fileType, byte[] data) {
         this.fileName = fileName;
         this.fileType = fileType;
