@@ -1,6 +1,6 @@
 package com.rollforinitiative.campaignmgr.controller;
 
-import com.rollforinitiative.campaignmgr.request.UsersRequestLessPassword;
+import com.rollforinitiative.campaignmgr.request.UsersLessPasswordRequest;
 import com.rollforinitiative.campaignmgr.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ public class UsersController {
     private UsersService usersService;
 
     @GetMapping("/get")
-    public UsersRequestLessPassword findUserByUserName(String username) {
+    public UsersLessPasswordRequest findUserByUserName(String username) {
         return usersService.getUsersByUserName(username);
     }
 }

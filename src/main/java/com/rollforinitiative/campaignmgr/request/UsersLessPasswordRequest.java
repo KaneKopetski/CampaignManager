@@ -2,7 +2,7 @@ package com.rollforinitiative.campaignmgr.request;
 
 import com.rollforinitiative.campaignmgr.model.Image;
 
-public class UsersRequestLessPassword {
+public class UsersLessPasswordRequest {
     private Long usersId;
     private String username;
     private String email;
