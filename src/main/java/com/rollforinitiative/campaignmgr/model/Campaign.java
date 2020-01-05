@@ -1,6 +1,5 @@
 package com.rollforinitiative.campaignmgr.model;
 
-import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.*;
 

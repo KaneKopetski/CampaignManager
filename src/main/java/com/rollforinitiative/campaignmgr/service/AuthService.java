@@ -1,7 +1,9 @@
 package com.rollforinitiative.campaignmgr.service;
 
 import com.rollforinitiative.campaignmgr.exception.FileStorageException;
+import com.rollforinitiative.campaignmgr.model.Image;
 import com.rollforinitiative.campaignmgr.model.Users;
+import com.rollforinitiative.campaignmgr.repository.ImageRepository;
 import com.rollforinitiative.campaignmgr.repository.UsersRepository;
 import com.rollforinitiative.campaignmgr.request.LoginRequest;
 import com.rollforinitiative.campaignmgr.request.RegisterRequest;
@@ -21,28 +23,30 @@ import java.util.Optional;
 public class AuthService {
 
     @Autowired
-    private UsersRepository userRepository;
+    private UsersRepository usersRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtProvider jwtProvider;
+    @Autowired
+    private ImageService imageService;
 
     public void register(RegisterRequest registerRequest) {
-        Users users = new Users();
-        users.setUsername(registerRequest.getUsername());
-        users.setPassword(encodePassword(registerRequest.getPassword()));
-        users.setEmail(registerRequest.getEmail());
-        users.setAboutMe(registerRequest.getAboutMe());
-        users.setFirstName(registerRequest.getFirstName());
-        users.setLastName(registerRequest.getLastName());
-        try {
-            users.setImage(registerRequest.getImage().getBytes());
-        } catch (IOException e) {
-            throw new FileStorageException("Could not store file.");
-        }
-        userRepository.save(users);
+        Users newUser = new Users();
+        newUser.setUsername(registerRequest.getUsername());
+        newUser.setPassword(encodePassword(registerRequest.getPassword()));
+        newUser.setEmail(registerRequest.getEmail());
+        newUser.setAboutMe(registerRequest.getAboutMe());
+        newUser.setFirstName(registerRequest.getFirstName());
+        newUser.setLastName(registerRequest.getLastName());
+
+        Image profilePicture = imageService.storeImage(registerRequest.getImage());
+
+        newUser.setProfilePicture(profilePicture);
+
+        usersRepository.save(newUser);
     }
 
     private String encodePassword(String password) {

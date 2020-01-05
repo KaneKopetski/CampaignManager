@@ -1,15 +1,15 @@
 package com.rollforinitiative.campaignmgr.request;
 
-import org.springframework.web.multipart.MultipartFile;
+import com.rollforinitiative.campaignmgr.model.Image;
 
-public class UsersRequest {
+public class UsersRequestLessPassword {
     private Long usersId;
     private String username;
     private String email;
     private String firstName;
     private String lastName;
     private String aboutMe;
-    private MultipartFile image;
+    private Image profilePicture;
 
     public Long getUsersId() {
         return usersId;
@@ -59,11 +59,11 @@ public class UsersRequest {
         this.aboutMe = aboutMe;
     }
 
-    public MultipartFile getImage() {
-        return image;
+    public Image getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setImage(MultipartFile image) {
-        this.image = image;
+    public void setProfilePicture(Image profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }

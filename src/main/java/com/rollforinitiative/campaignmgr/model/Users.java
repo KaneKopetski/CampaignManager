@@ -19,10 +19,8 @@ public class Users {
     private String lastName;
     @Column
     private String aboutMe;
-    @Lob
-    @Column
-    private byte[] image;
-
+    @OneToOne
+    private Image profilePicture;
 
     public Long getUsersId() {
         return usersId;
@@ -80,11 +78,11 @@ public class Users {
         this.aboutMe = aboutMe;
     }
 
-    public byte[] getImage() {
-        return image;
+    public Image getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setProfilePicture(Image profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }
