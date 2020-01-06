@@ -17,6 +17,7 @@ public class Users {
     private String firstName;
     @Column
     private String lastName;
+    @Lob
     @Column
     private String aboutMe;
     @OneToOne
