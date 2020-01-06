@@ -2,7 +2,12 @@ package com.rollforinitiative.campaignmgr.controller;
 
 import com.rollforinitiative.campaignmgr.request.UsersLessPasswordRequest;
 import com.rollforinitiative.campaignmgr.service.UsersService;
+import org.apache.coyote.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,9 +16,12 @@ public class UsersController {
 
     @Autowired
     private UsersService usersService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(UsersController.class);
+
 
     @GetMapping("/get/{username}")
-    public UsersLessPasswordRequest findUserByUserName(@PathVariable String username) {
-        return usersService.getUsersByUserName(username);
+    public ResponseEntity<UsersLessPasswordRequest> findUserByUserName(@PathVariable String username) {
+        LOGGER.info("User profile requested for username: " + username);
+        return new ResponseEntity<>(usersService.getUsersByUserName(username), HttpStatus.OK);
     }
 }
