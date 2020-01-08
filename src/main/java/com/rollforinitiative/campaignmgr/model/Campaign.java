@@ -16,6 +16,10 @@ public class Campaign {
     private String description;
     @ManyToOne
     private Users owner;
+    @OneToOne
+    private Image campaignPicture;
+    @OneToOne
+    private Image worldMap;
 
 
     public Long getCampaignId() {
@@ -56,5 +60,21 @@ public class Campaign {
 
     public void setOwner(Users owner) {
         this.owner = owner;
+    }
+
+    public Image getCampaignPicture() {
+        return campaignPicture;
+    }
+
+    public void setCampaignPicture(Image campaignPicture) {
+        this.campaignPicture = campaignPicture;
+    }
+
+    public Image getWorldMap() {
+        return worldMap;
+    }
+
+    public void setWorldMap(Image worldMap) {
+        this.worldMap = worldMap;
     }
 }
