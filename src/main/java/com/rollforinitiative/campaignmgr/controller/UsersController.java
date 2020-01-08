@@ -2,7 +2,6 @@ package com.rollforinitiative.campaignmgr.controller;
 
 import com.rollforinitiative.campaignmgr.request.UsersLessPasswordRequest;
 import com.rollforinitiative.campaignmgr.service.UsersService;
-import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

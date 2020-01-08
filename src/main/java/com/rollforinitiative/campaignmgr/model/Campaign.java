@@ -17,6 +17,7 @@ public class Campaign {
     @ManyToOne
     private Users owner;
 
+
     public Long getCampaignId() {
         return campaignId;
     }
