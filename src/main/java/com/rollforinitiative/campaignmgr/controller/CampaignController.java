@@ -2,7 +2,9 @@ package com.rollforinitiative.campaignmgr.controller;
 
 import com.rollforinitiative.campaignmgr.exception.CampaignNotFoundException;
 import com.rollforinitiative.campaignmgr.request.CampaignRequest;
+import com.rollforinitiative.campaignmgr.response.CampaignResponse;
 import com.rollforinitiative.campaignmgr.service.CampaignService;
+import com.rollforinitiative.campaignmgr.service.UsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +21,28 @@ public class CampaignController {
 
     @Autowired
     private CampaignService campaignService;
+
+    @Autowired
+    private UsersService usersService;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(CampaignController.class);
 
     @Valid
     @GetMapping("/get/all")
-    public ResponseEntity<List<CampaignRequest>> getAllCampaigns() {
-        List<CampaignRequest> allCampaigns = campaignService.getAllCampaigns();
+    public ResponseEntity<List<CampaignResponse>> getAllCampaigns() {
+        List<CampaignResponse> allCampaigns = campaignService.getAllCampaigns();
         return new ResponseEntity<>(allCampaigns, HttpStatus.OK);
     }
 
     @GetMapping("/get/{campaignId}")
-    public ResponseEntity<CampaignRequest> getCampaignById(@PathVariable Long campaignId) {
+    public ResponseEntity<CampaignResponse> getCampaignById(@PathVariable Long campaignId) {
         return new ResponseEntity<>(campaignService.getCampaignById(campaignId), HttpStatus.OK);
     }
 
-    @GetMapping("/owner/{ownerId}")
-    public ResponseEntity getAllCampaignsByOwner(@PathVariable Long ownerId) {
-        return new ResponseEntity<>(campaignService.getAllCampaignsByOwner(ownerId), HttpStatus.OK);
+    @GetMapping("/owner/{username}")
+    public ResponseEntity getAllCampaignsByUsername(@PathVariable String username) {
+        List<CampaignResponse> allUsersCampaigns = campaignService.getAllCampaignsByUsername(username);
+        return new ResponseEntity<>(allUsersCampaigns, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{campaignId}")
@@ -44,24 +51,24 @@ public class CampaignController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity updateCampaign(@RequestBody CampaignRequest campaignRequest) throws CampaignNotFoundException {
-        String campaignName = campaignRequest.getCampaignName();
-        String description = campaignRequest.getDescription();
-        Double edition = campaignRequest.getEdition();
-        LOGGER.info("Campaign update request received. Name: {}", campaignName);
-        LOGGER.info("Campaign update request received. Description: {}", description);
-        LOGGER.info("Campaign update request received. Edition: {}", edition);
-        try {
-            campaignService.updateCampaign(campaignRequest);
-        } catch (Exception e) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @PutMapping("/update")
+//    public ResponseEntity updateCampaign(@RequestBody CampaignRequest campaignRequest) throws CampaignNotFoundException {
+//        String campaignName = campaignRequest.getCampaignName();
+//        String description = campaignRequest.getDescription();
+//        Double edition = campaignRequest.getEdition();
+//        LOGGER.info("Campaign update request received. Name: {}", campaignName);
+//        LOGGER.info("Campaign update request received. Description: {}", description);
+//        LOGGER.info("Campaign update request received. Edition: {}", edition);
+//        try {
+//            campaignService.updateCampaign(campaignRequest);
+//        } catch (Exception e) {
+//            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
     @PostMapping("/create")
-    public ResponseEntity createPost(@RequestBody CampaignRequest campaignRequest) {
+    public ResponseEntity createCampaign(@ModelAttribute CampaignRequest campaignRequest) {
         String campaignName = campaignRequest.getCampaignName();
         String description = campaignRequest.getDescription();
         Double edition = campaignRequest.getEdition();
@@ -74,5 +81,10 @@ public class CampaignController {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value="/owner/{username}", method=RequestMethod.OPTIONS)
+    public ResponseEntity getOptions(@RequestParam("username") String username) {
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

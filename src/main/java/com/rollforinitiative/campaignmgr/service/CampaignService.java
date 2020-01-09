@@ -5,11 +5,10 @@ import com.rollforinitiative.campaignmgr.model.Campaign;
 import com.rollforinitiative.campaignmgr.model.Image;
 import com.rollforinitiative.campaignmgr.model.Users;
 import com.rollforinitiative.campaignmgr.repository.CampaignRepository;
-import com.rollforinitiative.campaignmgr.repository.ImageRepository;
 import com.rollforinitiative.campaignmgr.repository.UsersRepository;
-import com.rollforinitiative.campaignmgr.request.CampaignLessOwnerRequest;
 import com.rollforinitiative.campaignmgr.request.CampaignRequest;
 
+import com.rollforinitiative.campaignmgr.response.CampaignResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
@@ -32,15 +31,15 @@ public class CampaignService {
     private ImageService imageService;
 
     @Transactional
-    public List<CampaignRequest> getAllCampaigns() {
+    public List<CampaignResponse> getAllCampaigns() {
         List<Campaign> campaigns = campaignRepository.findAll();
-        return campaigns.stream().map(this::mapFromCampaignToRequest).collect(toList());
+        return campaigns.stream().map(this::mapFromCampaignToResponse).collect(toList());
     }
 
     @Transactional
-    public List<CampaignLessOwnerRequest> getAllCampaignsByOwner(Long campaignId) {
-        List<Campaign> campaigns = campaignRepository.findByOwner_UsersId(campaignId);
-        return campaigns.stream().map(this::mapFromCampaignToRequestLessOwner).collect(toList());
+    public List<CampaignResponse> getAllCampaignsByUsername(String username) {
+        List<Campaign> campaigns = campaignRepository.findByOwner_Username(username);
+        return campaigns.stream().map(this::mapFromCampaignToResponse).collect(toList());
     }
 
     @Transactional
@@ -51,34 +50,45 @@ public class CampaignService {
     }
 
     @Transactional
-    public CampaignRequest getCampaignById(Long campaignId) {
+    public CampaignResponse getCampaignById(Long campaignId) {
         Campaign campaign = campaignRepository.findById(campaignId).orElseThrow(() ->
                 new CampaignNotFoundException("For campaign ID: " + campaignId));
-        return mapFromCampaignToRequest(campaign);
+        return mapFromCampaignToResponse(campaign);
     }
 
-    private CampaignRequest mapFromCampaignToRequest(Campaign campaign) {
-        CampaignRequest campaignRequest = new CampaignRequest();
-        campaignRequest.setCampaignId(campaign.getCampaignId());
-        campaignRequest.setCampaignName(campaign.getCampaignName());
-        campaignRequest.setDescription(campaign.getDescription());
-        campaignRequest.setEdition(campaign.getEdition());
-        campaignRequest.setOwner(campaign.getOwner());
-        return campaignRequest;
+//    private CampaignRequest mapFromCampaignToRequest(Campaign campaign) {
+//        CampaignRequest campaignRequest = new CampaignRequest();
+//        campaignRequest.setCampaignId(campaign.getCampaignId());
+//        campaignRequest.setCampaignName(campaign.getCampaignName());
+//        campaignRequest.setDescription(campaign.getDescription());
+//        campaignRequest.setEdition(campaign.getEdition());
+//        campaignRequest.setOwner(campaign.getOwner());
+//        return campaignRequest;
+//    }
+
+    private CampaignResponse mapFromCampaignToResponse(Campaign campaign) {
+        CampaignResponse campaignResponse = new CampaignResponse();
+        campaignResponse.setCampaignId(campaign.getCampaignId());
+        campaignResponse.setCampaignName(campaign.getCampaignName());
+        campaignResponse.setDescription(campaign.getDescription());
+        campaignResponse.setEdition(campaign.getEdition());
+        campaignResponse.setOwner(campaign.getOwner().getUsername());
+        campaignResponse.setCampaignImage(campaign.getCampaignPicture());
+        campaignResponse.setWorldMap(campaign.getWorldMap());
+        return campaignResponse;
     }
 
-    private CampaignLessOwnerRequest mapFromCampaignToRequestLessOwner(Campaign campaign) {
-        CampaignLessOwnerRequest campaignLessOwnerRequest = new CampaignLessOwnerRequest();
-        campaignLessOwnerRequest.setCampaignId(campaign.getCampaignId());
-        campaignLessOwnerRequest.setCampaignName(campaign.getCampaignName());
-        campaignLessOwnerRequest.setDescription(campaign.getDescription());
-        campaignLessOwnerRequest.setEdition(campaign.getEdition());
-        return campaignLessOwnerRequest;
-    }
+//    private CampaignLessOwnerRequest mapFromCampaignToRequestLessOwner(Campaign campaign) {
+//        CampaignLessOwnerRequest campaignLessOwnerRequest = new CampaignLessOwnerRequest();
+//        campaignLessOwnerRequest.setCampaignId(campaign.getCampaignId());
+//        campaignLessOwnerRequest.setCampaignName(campaign.getCampaignName());
+//        campaignLessOwnerRequest.setDescription(campaign.getDescription());
+//        campaignLessOwnerRequest.setEdition(campaign.getEdition());
+//        return campaignLessOwnerRequest;
+//    }
 
     private Campaign mapFromRequestToCampaign(CampaignRequest campaignRequest) {
         Campaign campaign = new Campaign();
-        campaign.setCampaignId(campaignRequest.getCampaignId());
         campaign.setCampaignName(campaignRequest.getCampaignName());
         campaign.setDescription(campaignRequest.getDescription());
         campaign.setEdition(campaignRequest.getEdition());
@@ -102,14 +112,14 @@ public class CampaignService {
         return true;
     }
 
-    @Transactional
-    public Campaign updateCampaign(CampaignRequest campaignRequest) {
-        Campaign campaign = campaignRepository.getOne(campaignRequest.getCampaignId());
-        campaign.setCampaignName(campaignRequest.getCampaignName());
-        campaign.setDescription(campaignRequest.getDescription());
-        campaign.setEdition(campaignRequest.getEdition());
-        campaignRepository.save(campaign);
-        return campaign;
-    }
+//    @Transactional
+//    public Campaign updateCampaign(CampaignRequest campaignRequest) {
+//        Campaign campaign = campaignRepository.getOne(campaignRequest.getCampaignId());
+//        campaign.setCampaignName(campaignRequest.getCampaignName());
+//        campaign.setDescription(campaignRequest.getDescription());
+//        campaign.setEdition(campaignRequest.getEdition());
+//        campaignRepository.save(campaign);
+//        return campaign;
+//    }
 
 }

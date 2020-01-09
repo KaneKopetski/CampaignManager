@@ -1,13 +1,23 @@
-package com.rollforinitiative.campaignmgr.request;
+package com.rollforinitiative.campaignmgr.response;
 
-import org.springframework.web.multipart.MultipartFile;
+import com.rollforinitiative.campaignmgr.model.Image;
 
-public class CampaignRequest {
+public class CampaignResponse {
+    private Long campaignId;
     private String campaignName;
     private Double edition;
     private String description;
-    private MultipartFile campaignImage;
-    private MultipartFile worldMap;
+    private String owner;
+    private Image campaignImage;
+    private Image worldMap;
+
+    public Long getCampaignId() {
+        return campaignId;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
+    }
 
     public String getCampaignName() {
         return campaignName;
@@ -33,19 +43,27 @@ public class CampaignRequest {
         this.description = description;
     }
 
-    public MultipartFile getCampaignImage() {
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public Image getCampaignImage() {
         return campaignImage;
     }
 
-    public void setCampaignImage(MultipartFile campaignImage) {
+    public void setCampaignImage(Image campaignImage) {
         this.campaignImage = campaignImage;
     }
 
-    public MultipartFile getWorldMap() {
+    public Image getWorldMap() {
         return worldMap;
     }
 
-    public void setWorldMap(MultipartFile worldMap) {
+    public void setWorldMap(Image worldMap) {
         this.worldMap = worldMap;
     }
 }

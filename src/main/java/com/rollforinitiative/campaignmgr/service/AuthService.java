@@ -1,9 +1,7 @@
 package com.rollforinitiative.campaignmgr.service;
 
-import com.rollforinitiative.campaignmgr.exception.FileStorageException;
 import com.rollforinitiative.campaignmgr.model.Image;
 import com.rollforinitiative.campaignmgr.model.Users;
-import com.rollforinitiative.campaignmgr.repository.ImageRepository;
 import com.rollforinitiative.campaignmgr.repository.UsersRepository;
 import com.rollforinitiative.campaignmgr.request.LoginRequest;
 import com.rollforinitiative.campaignmgr.request.RegisterRequest;
@@ -16,7 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.Optional;
 
 @Service

@@ -18,10 +18,10 @@ public class UsersService {
     public UsersLessPasswordRequest getUsersByUserName(String username) {
         Users users = usersRepository.findByUsername(username).orElseThrow(() ->
                 new UsersNotFoundException("For username: " + username));
-        return mapUsersToUsersReqest(users);
+        return mapUsersToUsersRequest(users);
     }
 
-    public UsersLessPasswordRequest mapUsersToUsersReqest(Users users) {
+    public UsersLessPasswordRequest mapUsersToUsersRequest(Users users) {
         UsersLessPasswordRequest usersLessPasswordRequest = new UsersLessPasswordRequest();
         usersLessPasswordRequest.setUsername(users.getUsername());
         usersLessPasswordRequest.setFirstName(users.getFirstName());

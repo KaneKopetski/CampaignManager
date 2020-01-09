@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface CampaignRepository extends JpaRepository<Campaign, Long> {
     List<Campaign> findByOwner_UsersId(Long usersId);
+    List<Campaign> findByOwner_Username(String username);
 
 }
 
