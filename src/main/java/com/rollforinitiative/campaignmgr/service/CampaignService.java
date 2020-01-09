@@ -2,8 +2,10 @@ package com.rollforinitiative.campaignmgr.service;
 
 import com.rollforinitiative.campaignmgr.exception.CampaignNotFoundException;
 import com.rollforinitiative.campaignmgr.model.Campaign;
+import com.rollforinitiative.campaignmgr.model.Image;
 import com.rollforinitiative.campaignmgr.model.Users;
 import com.rollforinitiative.campaignmgr.repository.CampaignRepository;
+import com.rollforinitiative.campaignmgr.repository.ImageRepository;
 import com.rollforinitiative.campaignmgr.repository.UsersRepository;
 import com.rollforinitiative.campaignmgr.request.CampaignLessOwnerRequest;
 import com.rollforinitiative.campaignmgr.request.CampaignRequest;
@@ -26,6 +28,8 @@ public class CampaignService {
     private CampaignRepository campaignRepository;
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private ImageService imageService;
 
     @Transactional
     public List<CampaignRequest> getAllCampaigns() {
@@ -82,6 +86,12 @@ public class CampaignService {
         User loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("User not found."));
         Users owner = usersRepository.findByUsername(loggedInUser.getUsername()).get();
         campaign.setOwner(owner);
+
+        Image campaignPicture = imageService.storeImage(campaignRequest.getCampaignImage());
+        Image worldMap = imageService.storeImage(campaignRequest.getWorldMap());
+
+        campaign.setCampaignPicture(campaignPicture);
+        campaign.setWorldMap(worldMap);
 
         return campaign;
     }
