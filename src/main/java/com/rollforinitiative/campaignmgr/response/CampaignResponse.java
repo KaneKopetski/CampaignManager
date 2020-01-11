@@ -9,7 +9,7 @@ public class CampaignResponse {
     private String description;
     private String owner;
     private Image campaignImage;
-    private Image worldMap;
+//    private Image worldMap;
 
     public Long getCampaignId() {
         return campaignId;
@@ -58,12 +58,12 @@ public class CampaignResponse {
     public void setCampaignImage(Image campaignImage) {
         this.campaignImage = campaignImage;
     }
-
-    public Image getWorldMap() {
-        return worldMap;
-    }
-
-    public void setWorldMap(Image worldMap) {
-        this.worldMap = worldMap;
-    }
+//
+//    public Image getWorldMap() {
+//        return worldMap;
+//    }
+//
+//    public void setWorldMap(Image worldMap) {
+//        this.worldMap = worldMap;
+//    }
 }

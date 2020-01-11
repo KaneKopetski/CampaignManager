@@ -18,8 +18,8 @@ public class Campaign {
     private Users owner;
     @OneToOne
     private Image campaignPicture;
-    @OneToOne
-    private Image worldMap;
+//    @OneToOne
+//    private Image worldMap;
 
 
     public Long getCampaignId() {
@@ -69,12 +69,12 @@ public class Campaign {
     public void setCampaignPicture(Image campaignPicture) {
         this.campaignPicture = campaignPicture;
     }
-
-    public Image getWorldMap() {
-        return worldMap;
-    }
-
-    public void setWorldMap(Image worldMap) {
-        this.worldMap = worldMap;
-    }
+//
+//    public Image getWorldMap() {
+//        return worldMap;
+//    }
+//
+//    public void setWorldMap(Image worldMap) {
+//        this.worldMap = worldMap;
+//    }
 }

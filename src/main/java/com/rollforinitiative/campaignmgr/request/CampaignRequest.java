@@ -7,7 +7,7 @@ public class CampaignRequest {
     private Double edition;
     private String description;
     private MultipartFile campaignImage;
-    private MultipartFile worldMap;
+//    private MultipartFile worldMap;
 
     public String getCampaignName() {
         return campaignName;
@@ -40,12 +40,12 @@ public class CampaignRequest {
     public void setCampaignImage(MultipartFile campaignImage) {
         this.campaignImage = campaignImage;
     }
-
-    public MultipartFile getWorldMap() {
-        return worldMap;
-    }
-
-    public void setWorldMap(MultipartFile worldMap) {
-        this.worldMap = worldMap;
-    }
+//
+//    public MultipartFile getWorldMap() {
+//        return worldMap;
+//    }
+//
+//    public void setWorldMap(MultipartFile worldMap) {
+//        this.worldMap = worldMap;
+//    }
 }

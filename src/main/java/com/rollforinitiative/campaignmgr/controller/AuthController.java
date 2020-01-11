@@ -24,7 +24,7 @@ public class AuthController {
         String username = registerRequest.getUsername();
         LOGGER.info("Sign-up post request received. Username: {}", username);
         authService.register(registerRequest);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PostMapping("/login")

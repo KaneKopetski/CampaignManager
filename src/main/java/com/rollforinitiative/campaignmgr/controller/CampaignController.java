@@ -51,22 +51,6 @@ public class CampaignController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-//    @PutMapping("/update")
-//    public ResponseEntity updateCampaign(@RequestBody CampaignRequest campaignRequest) throws CampaignNotFoundException {
-//        String campaignName = campaignRequest.getCampaignName();
-//        String description = campaignRequest.getDescription();
-//        Double edition = campaignRequest.getEdition();
-//        LOGGER.info("Campaign update request received. Name: {}", campaignName);
-//        LOGGER.info("Campaign update request received. Description: {}", description);
-//        LOGGER.info("Campaign update request received. Edition: {}", edition);
-//        try {
-//            campaignService.updateCampaign(campaignRequest);
-//        } catch (Exception e) {
-//            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
     @PostMapping("/create")
     public ResponseEntity createCampaign(@ModelAttribute CampaignRequest campaignRequest) {
         String campaignName = campaignRequest.getCampaignName();
@@ -87,4 +71,23 @@ public class CampaignController {
     public ResponseEntity getOptions(@RequestParam("username") String username) {
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+//    @PutMapping("/update")
+//    public ResponseEntity updateCampaign(@RequestBody CampaignRequest campaignRequest) throws CampaignNotFoundException {
+//        String campaignName = campaignRequest.getCampaignName();
+//        String description = campaignRequest.getDescription();
+//        Double edition = campaignRequest.getEdition();
+//        LOGGER.info("Campaign update request received. Name: {}", campaignName);
+//        LOGGER.info("Campaign update request received. Description: {}", description);
+//        LOGGER.info("Campaign update request received. Edition: {}", edition);
+//        try {
+//            campaignService.updateCampaign(campaignRequest);
+//        } catch (Exception e) {
+//            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+
+
 }
