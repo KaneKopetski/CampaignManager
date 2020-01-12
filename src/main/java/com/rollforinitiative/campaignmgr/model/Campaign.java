@@ -1,5 +1,6 @@
 package com.rollforinitiative.campaignmgr.model;
 
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -12,7 +13,9 @@ public class Campaign {
     private String campaignName;
     @Column
     private String edition;
+    @Lob
     @Column
+    @Type(type = "org.hibernate.type.TextType")
     private String description;
     @ManyToOne
     private Users owner;

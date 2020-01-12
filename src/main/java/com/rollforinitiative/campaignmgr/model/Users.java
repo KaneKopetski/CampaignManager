@@ -1,5 +1,7 @@
 package com.rollforinitiative.campaignmgr.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,7 @@ public class Users {
     private String lastName;
     @Lob
     @Column
+    @Type(type = "org.hibernate.type.TextType")
     private String aboutMe;
     @OneToOne
     private Image profilePicture;
