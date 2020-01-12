@@ -55,7 +55,7 @@ public class CampaignController {
     public ResponseEntity createCampaign(@ModelAttribute CampaignRequest campaignRequest) {
         String campaignName = campaignRequest.getCampaignName();
         String description = campaignRequest.getDescription();
-        Double edition = campaignRequest.getEdition();
+        String edition = campaignRequest.getEdition();
         LOGGER.info("Campaign creation request received. Name: {}", campaignName);
         LOGGER.info("Campaign creation request received. Description: {}", description);
         LOGGER.info("Campaign creation request received. Edition: {}", edition);

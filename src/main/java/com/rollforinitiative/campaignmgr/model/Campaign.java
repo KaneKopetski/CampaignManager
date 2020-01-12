@@ -11,15 +11,15 @@ public class Campaign {
     @Column
     private String campaignName;
     @Column
-    private Double edition;
+    private String edition;
     @Column
     private String description;
     @ManyToOne
     private Users owner;
     @OneToOne
     private Image campaignPicture;
-//    @OneToOne
-//    private Image worldMap;
+    @OneToOne
+    private Image worldMap;
 
 
     public Long getCampaignId() {
@@ -38,11 +38,11 @@ public class Campaign {
         this.campaignName = campaignName;
     }
 
-    public Double getEdition() {
+    public String getEdition() {
         return edition;
     }
 
-    public void setEdition(Double edition) {
+    public void setEdition(String edition) {
         this.edition = edition;
     }
 
@@ -69,12 +69,12 @@ public class Campaign {
     public void setCampaignPicture(Image campaignPicture) {
         this.campaignPicture = campaignPicture;
     }
-//
-//    public Image getWorldMap() {
-//        return worldMap;
-//    }
-//
-//    public void setWorldMap(Image worldMap) {
-//        this.worldMap = worldMap;
-//    }
+
+    public Image getWorldMap() {
+        return worldMap;
+    }
+
+    public void setWorldMap(Image worldMap) {
+        this.worldMap = worldMap;
+    }
 }

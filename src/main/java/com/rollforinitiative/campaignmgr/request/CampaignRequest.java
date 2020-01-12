@@ -4,10 +4,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class CampaignRequest {
     private String campaignName;
-    private Double edition;
+    private String edition;
     private String description;
     private MultipartFile campaignImage;
-//    private MultipartFile worldMap;
+    private MultipartFile worldMap;
 
     public String getCampaignName() {
         return campaignName;
@@ -17,11 +17,11 @@ public class CampaignRequest {
         this.campaignName = campaignName;
     }
 
-    public Double getEdition() {
+    public String getEdition() {
         return edition;
     }
 
-    public void setEdition(Double edition) {
+    public void setEdition(String edition) {
         this.edition = edition;
     }
 
@@ -40,12 +40,12 @@ public class CampaignRequest {
     public void setCampaignImage(MultipartFile campaignImage) {
         this.campaignImage = campaignImage;
     }
-//
-//    public MultipartFile getWorldMap() {
-//        return worldMap;
-//    }
-//
-//    public void setWorldMap(MultipartFile worldMap) {
-//        this.worldMap = worldMap;
-//    }
+
+    public MultipartFile getWorldMap() {
+        return worldMap;
+    }
+
+    public void setWorldMap(MultipartFile worldMap) {
+        this.worldMap = worldMap;
+    }
 }

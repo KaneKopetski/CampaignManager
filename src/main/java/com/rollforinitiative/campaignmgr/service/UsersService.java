@@ -3,7 +3,7 @@ package com.rollforinitiative.campaignmgr.service;
 import com.rollforinitiative.campaignmgr.exception.UsersNotFoundException;
 import com.rollforinitiative.campaignmgr.model.Users;
 import com.rollforinitiative.campaignmgr.repository.UsersRepository;
-import com.rollforinitiative.campaignmgr.request.UsersLessPasswordRequest;
+import com.rollforinitiative.campaignmgr.response.UsersLessPasswordResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,22 +15,22 @@ public class UsersService {
     private UsersRepository usersRepository;
 
     @Transactional
-    public UsersLessPasswordRequest getUsersByUserName(String username) {
+    public UsersLessPasswordResponse getUsersByUserName(String username) {
         Users users = usersRepository.findByUsername(username).orElseThrow(() ->
                 new UsersNotFoundException("For username: " + username));
         return mapUsersToUsersRequest(users);
     }
 
-    public UsersLessPasswordRequest mapUsersToUsersRequest(Users users) {
-        UsersLessPasswordRequest usersLessPasswordRequest = new UsersLessPasswordRequest();
-        usersLessPasswordRequest.setUsername(users.getUsername());
-        usersLessPasswordRequest.setFirstName(users.getFirstName());
-        usersLessPasswordRequest.setLastName(users.getLastName());
-        usersLessPasswordRequest.setEmail(users.getEmail());
-        usersLessPasswordRequest.setAboutMe(users.getAboutMe());
-        usersLessPasswordRequest.setProfilePicture(users.getProfilePicture());
+    public UsersLessPasswordResponse mapUsersToUsersRequest(Users users) {
+        UsersLessPasswordResponse usersLessPasswordResponse = new UsersLessPasswordResponse();
+        usersLessPasswordResponse.setUsername(users.getUsername());
+        usersLessPasswordResponse.setFirstName(users.getFirstName());
+        usersLessPasswordResponse.setLastName(users.getLastName());
+        usersLessPasswordResponse.setEmail(users.getEmail());
+        usersLessPasswordResponse.setAboutMe(users.getAboutMe());
+        usersLessPasswordResponse.setProfilePicture(users.getProfilePicture());
 
-        return usersLessPasswordRequest;
+        return usersLessPasswordResponse;
     }
 
 }

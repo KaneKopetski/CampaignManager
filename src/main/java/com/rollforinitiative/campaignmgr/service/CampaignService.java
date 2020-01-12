@@ -73,7 +73,7 @@ public class CampaignService {
         campaignResponse.setEdition(campaign.getEdition());
         campaignResponse.setOwner(campaign.getOwner().getUsername());
         campaignResponse.setCampaignImage(campaign.getCampaignPicture());
-//        campaignResponse.setWorldMap(campaign.getWorldMap());
+        campaignResponse.setWorldMap(campaign.getWorldMap());
         return campaignResponse;
     }
 
@@ -97,10 +97,10 @@ public class CampaignService {
         campaign.setOwner(owner);
 
         Image campaignPicture = imageService.storeImage(campaignRequest.getCampaignImage());
-//        Image worldMap = imageService.storeImage(campaignRequest.getWorldMap());
+        Image worldMap = imageService.storeImage(campaignRequest.getWorldMap());
 
         campaign.setCampaignPicture(campaignPicture);
-//        campaign.setWorldMap(worldMap);
+        campaign.setWorldMap(worldMap);
 
         return campaign;
     }

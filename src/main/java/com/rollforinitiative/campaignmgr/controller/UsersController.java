@@ -1,6 +1,6 @@
 package com.rollforinitiative.campaignmgr.controller;
 
-import com.rollforinitiative.campaignmgr.request.UsersLessPasswordRequest;
+import com.rollforinitiative.campaignmgr.response.UsersLessPasswordResponse;
 import com.rollforinitiative.campaignmgr.service.UsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ public class UsersController {
 
 
     @GetMapping("/get/{username}")
-    public ResponseEntity<UsersLessPasswordRequest> findUserByUserName(@PathVariable String username) {
+    public ResponseEntity<UsersLessPasswordResponse> findUserByUserName(@PathVariable String username) {
         LOGGER.info("User profile requested for username: " + username);
         return new ResponseEntity<>(usersService.getUsersByUserName(username), HttpStatus.OK);
     }

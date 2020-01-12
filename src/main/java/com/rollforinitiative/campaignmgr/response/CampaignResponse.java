@@ -5,11 +5,11 @@ import com.rollforinitiative.campaignmgr.model.Image;
 public class CampaignResponse {
     private Long campaignId;
     private String campaignName;
-    private Double edition;
+    private String edition;
     private String description;
     private String owner;
     private Image campaignImage;
-//    private Image worldMap;
+    private Image worldMap;
 
     public Long getCampaignId() {
         return campaignId;
@@ -27,11 +27,11 @@ public class CampaignResponse {
         this.campaignName = campaignName;
     }
 
-    public Double getEdition() {
+    public String getEdition() {
         return edition;
     }
 
-    public void setEdition(Double edition) {
+    public void setEdition(String edition) {
         this.edition = edition;
     }
 
@@ -58,12 +58,12 @@ public class CampaignResponse {
     public void setCampaignImage(Image campaignImage) {
         this.campaignImage = campaignImage;
     }
-//
-//    public Image getWorldMap() {
-//        return worldMap;
-//    }
-//
-//    public void setWorldMap(Image worldMap) {
-//        this.worldMap = worldMap;
-//    }
+
+    public Image getWorldMap() {
+        return worldMap;
+    }
+
+    public void setWorldMap(Image worldMap) {
+        this.worldMap = worldMap;
+    }
 }
