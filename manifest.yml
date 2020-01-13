@@ -1,0 +1,9 @@
+---
+applications:
+  - name: r4i-roll4initiative-api
+    memory: 1G
+    instances: 1
+    buildpack: java_buildpack
+    path: target/campaignmgr-0.0.1-SNAPSHOT.jar
+    services:
+      - r4i-rollforinitiative-db
