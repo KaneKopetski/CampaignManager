@@ -46,9 +46,10 @@ public class CampaignController {
     }
 
     @DeleteMapping("/delete/{campaignId}")
-    public ResponseEntity<Boolean> deleteCampaign(@PathVariable Long campaignId) {
+    public ResponseEntity deleteCampaign(@PathVariable Long campaignId) {
+        LOGGER.info("Deletion request received on: " + campaignId);
         campaignService.deleteCampaignById(campaignId);
-        return new ResponseEntity<>(true, HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @PostMapping("/create")
