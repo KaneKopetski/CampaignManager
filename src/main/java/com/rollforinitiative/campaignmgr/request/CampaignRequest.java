@@ -3,6 +3,7 @@ package com.rollforinitiative.campaignmgr.request;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CampaignRequest {
+    private Long campaignId;
     private String campaignName;
     private String edition;
     private String description;
@@ -47,5 +48,13 @@ public class CampaignRequest {
 
     public void setWorldMap(MultipartFile worldMap) {
         this.worldMap = worldMap;
+    }
+
+    public Long getCampaignId() {
+        return campaignId;
+    }
+
+    public void setCampaignId(Long campaignId) {
+        this.campaignId = campaignId;
     }
 }

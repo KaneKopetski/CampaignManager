@@ -74,21 +74,26 @@ public class CampaignController {
     }
 
 
-//    @PutMapping("/update")
-//    public ResponseEntity updateCampaign(@RequestBody CampaignRequest campaignRequest) throws CampaignNotFoundException {
-//        String campaignName = campaignRequest.getCampaignName();
-//        String description = campaignRequest.getDescription();
-//        Double edition = campaignRequest.getEdition();
-//        LOGGER.info("Campaign update request received. Name: {}", campaignName);
-//        LOGGER.info("Campaign update request received. Description: {}", description);
-//        LOGGER.info("Campaign update request received. Edition: {}", edition);
-//        try {
-//            campaignService.updateCampaign(campaignRequest);
-//        } catch (Exception e) {
-//            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    @PutMapping("/update")
+    public ResponseEntity updateCampaign(@RequestBody CampaignRequest campaignRequest) throws CampaignNotFoundException {
+        String campaignName = campaignRequest.getCampaignName();
+        String description = campaignRequest.getDescription();
+        String edition = campaignRequest.getEdition();
+        String imageFileName = campaignRequest.getCampaignImage().getOriginalFilename();
+        String worldMapFileName = campaignRequest.getWorldMap().getOriginalFilename();
+        LOGGER.info("Campaign update request received.\nName: {}", campaignName);
+        LOGGER.info("Description: {}", description);
+        LOGGER.info("Edition: {}", edition);
+        LOGGER.info("Campaign Image Name: {}", imageFileName);
+        LOGGER.info("Campaign World Map Name: {}", worldMapFileName);
+
+        try {
+            campaignService.updateCampaign(campaignRequest);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
 
 }

@@ -1,5 +1,6 @@
 package com.rollforinitiative.campaignmgr.model;
 
+import com.rollforinitiative.campaignmgr.list.Statuses;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -17,6 +18,8 @@ public class Campaign {
     @Column
     @Type(type = "org.hibernate.type.TextType")
     private String description;
+    @Enumerated(EnumType.STRING)
+    private Statuses status;
     @ManyToOne
     private Users owner;
     @OneToOne
@@ -79,5 +82,13 @@ public class Campaign {
 
     public void setWorldMap(Image worldMap) {
         this.worldMap = worldMap;
+    }
+
+    public Statuses getStatus() {
+        return status;
+    }
+
+    public void setStatus(Statuses status) {
+        this.status = status;
     }
 }

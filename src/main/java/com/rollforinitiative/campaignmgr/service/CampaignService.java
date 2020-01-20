@@ -111,14 +111,20 @@ public class CampaignService {
         return true;
     }
 
-//    @Transactional
-//    public Campaign updateCampaign(CampaignRequest campaignRequest) {
-//        Campaign campaign = campaignRepository.getOne(campaignRequest.getCampaignId());
-//        campaign.setCampaignName(campaignRequest.getCampaignName());
-//        campaign.setDescription(campaignRequest.getDescription());
-//        campaign.setEdition(campaignRequest.getEdition());
-//        campaignRepository.save(campaign);
-//        return campaign;
-//    }
+    @Transactional
+    public Campaign updateCampaign(CampaignRequest campaignRequest) {
+
+        Campaign campaign = campaignRepository.getOne(campaignRequest.getCampaignId());
+
+        imageService.updateImage(campaign.getCampaignPicture(), campaignRequest.getCampaignImage());
+        imageService.updateImage(campaign.getWorldMap(), campaignRequest.getWorldMap());
+
+        campaign.setCampaignName(campaignRequest.getCampaignName());
+        campaign.setDescription(campaignRequest.getDescription());
+        campaign.setEdition(campaignRequest.getEdition());
+
+        campaignRepository.save(campaign);
+        return campaign;
+    }
 
 }
