@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Character {
+public class PlayerCharacter {
     @Id
     @GeneratedValue
     private Long characterId;
@@ -35,8 +35,14 @@ public class Character {
     private Integer armorClass;
     @Column
     private Integer speed;
+    @OneToOne
+    private Image portrait;
+    @OneToOne
+    private Image mapIcon;
     @ManyToOne
     private Party party;
+    @ManyToOne
+    private Campaign campaign;
     @ManyToOne
     private Users owner;
     @OneToOne
@@ -191,5 +197,29 @@ public class Character {
 
     public void setClasses(List<CharClass> classes) {
         this.classes = classes;
+    }
+
+    public Image getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(Image portrait) {
+        this.portrait = portrait;
+    }
+
+    public Image getMapIcon() {
+        return mapIcon;
+    }
+
+    public void setMapIcon(Image mapIcon) {
+        this.mapIcon = mapIcon;
+    }
+
+    public Campaign getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
     }
 }

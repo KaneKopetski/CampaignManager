@@ -16,7 +16,7 @@ public class CharClass {
     @OneToOne
     private Users creator;
     @ManyToMany(mappedBy = "classes")
-    private Set<Character> characters = new HashSet<>();
+    private Set<PlayerCharacter> playerCharacters = new HashSet<>();
 
     public Long getClassId() {
         return classId;
@@ -50,11 +50,11 @@ public class CharClass {
         this.hitDice = hitDice;
     }
 
-    public Set<Character> getCharacters() {
-        return characters;
+    public Set<PlayerCharacter> getPlayerCharacters() {
+        return playerCharacters;
     }
 
-    public void setCharacters(Set<Character> characters) {
-        this.characters = characters;
+    public void setPlayerCharacters(Set<PlayerCharacter> playerCharacters) {
+        this.playerCharacters = playerCharacters;
     }
 }

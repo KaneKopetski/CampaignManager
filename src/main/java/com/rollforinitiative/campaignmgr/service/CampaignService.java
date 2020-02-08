@@ -55,15 +55,11 @@ public class CampaignService {
         return mapFromCampaignToResponse(campaign);
     }
 
-//    private CampaignRequest mapFromCampaignToRequest(Campaign campaign) {
-//        CampaignRequest campaignRequest = new CampaignRequest();
-//        campaignRequest.setCampaignId(campaign.getCampaignId());
-//        campaignRequest.setCampaignName(campaign.getCampaignName());
-//        campaignRequest.setDescription(campaign.getDescription());
-//        campaignRequest.setEdition(campaign.getEdition());
-//        campaignRequest.setOwner(campaign.getOwner());
-//        return campaignRequest;
-//    }
+    @Transactional
+    public Campaign getCampaignEntityById(Long campaignId) {
+        return campaignRepository.findById(campaignId).orElseThrow(() ->
+                new CampaignNotFoundException("For campaign ID: " + campaignId));
+    }
 
     private CampaignResponse mapFromCampaignToResponse(Campaign campaign) {
         CampaignResponse campaignResponse = new CampaignResponse();
@@ -76,15 +72,6 @@ public class CampaignService {
         campaignResponse.setWorldMap(campaign.getWorldMap());
         return campaignResponse;
     }
-
-//    private CampaignLessOwnerRequest mapFromCampaignToRequestLessOwner(Campaign campaign) {
-//        CampaignLessOwnerRequest campaignLessOwnerRequest = new CampaignLessOwnerRequest();
-//        campaignLessOwnerRequest.setCampaignId(campaign.getCampaignId());
-//        campaignLessOwnerRequest.setCampaignName(campaign.getCampaignName());
-//        campaignLessOwnerRequest.setDescription(campaign.getDescription());
-//        campaignLessOwnerRequest.setEdition(campaign.getEdition());
-//        return campaignLessOwnerRequest;
-//    }
 
     private Campaign mapFromRequestToCampaign(CampaignRequest campaignRequest) {
         Campaign campaign = new Campaign();

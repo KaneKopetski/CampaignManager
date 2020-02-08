@@ -42,7 +42,7 @@ public class Spell {
     @Column
     private String effect;
     @ManyToOne
-    private Character character;
+    private PlayerCharacter playerCharacter;
 
     public Long getSpellId() {
         return spellId;
@@ -188,11 +188,11 @@ public class Spell {
         this.effect = effect;
     }
 
-    public Character getCharacter() {
-        return character;
+    public PlayerCharacter getPlayerCharacter() {
+        return playerCharacter;
     }
 
-    public void setCharacter(Character character) {
-        this.character = character;
+    public void setPlayerCharacter(PlayerCharacter playerCharacter) {
+        this.playerCharacter = playerCharacter;
     }
 }

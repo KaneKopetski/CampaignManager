@@ -14,7 +14,7 @@ public class Feature {
     @Column
     private String description;
     @ManyToOne
-    private Character character;
+    private PlayerCharacter playerCharacter;
 
     public Long getFeatureId() {
         return featureId;
@@ -48,11 +48,11 @@ public class Feature {
         this.description = description;
     }
 
-    public Character getCharacter() {
-        return character;
+    public PlayerCharacter getPlayerCharacter() {
+        return playerCharacter;
     }
 
-    public void setCharacter(Character character) {
-        this.character = character;
+    public void setPlayerCharacter(PlayerCharacter playerCharacter) {
+        this.playerCharacter = playerCharacter;
     }
 }
